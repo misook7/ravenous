@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    handleSearch(event) {
+    handleSearch(event) {        
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
         event.preventDefault();
     }
@@ -33,19 +33,32 @@ class SearchBar extends React.Component {
             return 'active';
         }
          return '';        
-    }
+    }   
 
-    handleSortByChange(sortByOption) {
+    /*
+    handleSortByChange(sortByOption) {   
         this.setState({
             sortBy: sortByOption
         });
     }
-    
+    */  
+
+    // Clicking on a different sorting option automatically requeries the Yelp API, rather than having to manually click “Let’s Go” again
+    handleSortByChange(sortByOption) { 
+        this.setState({ sortBy: sortByOption }, () => { 
+            if (this.state.term && this.state.location) { 
+                this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy); 
+            }
+        });
+    }
+
+    // dynamically create the list items needed to display the sort options (Best Match, Highest Rated, Most Reviewed)
     renderSortByOptions() {
-        return Object.keys(sortByOptions).map(sortByOption => {
-            let sortByOptionValue = sortByOptions[sortByOption];
-            //return <li key={sortByOptionValue}>{sortByOption}</li>
+        return Object.keys(sortByOptions).map(sortByOption => {            
+            // store the sort option object values 
+            let sortByOptionValue = sortByOptions[sortByOption];    
             return <li key={sortByOptionValue} onClick={this.handleSortByChange.bind(this, sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)}>{sortByOption}</li>
+            //return <li key={sortByOptionValue} onClick={()=>this.handleSortByChangeAndSearch(sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)}>{sortByOption}</li>
         });
     }
 
@@ -57,9 +70,19 @@ class SearchBar extends React.Component {
         this.setState({ location: event.target.value });
     } 
 
+    // Trigger search query with enter key
+    keyPressed(event) {       
+        var code = event.keyCode || event.which;
+
+        // 13 is enter key. One of the fields like term or location has to be filled to search. 
+        if (code === 13 & (this.state.term || this.state.location)) {
+            this.handleSearch(event);
+        }
+    }
+
     render() {
         return(
-            <div className="SearchBar">
+            <div className="SearchBar" onKeyPress={(e) => this.keyPressed(e)}>
                 <div className="SearchBar-sort-options">
                     <ul>
                         {this.renderSortByOptions()}
@@ -75,6 +98,7 @@ class SearchBar extends React.Component {
             </div>
         );
     }
-}
+}    
+
 
 export default SearchBar;
