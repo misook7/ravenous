@@ -41,6 +41,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2.88rem;
+    /* The items are stretched by default. If autosearch div expands area, the other input also expands it's height. To avoid, this needed */
+    align-items: flex-start;
   }
   
   .SearchBar-fields input {
@@ -74,6 +76,15 @@
     cursor: pointer;
     background-color: #a7874b;
   }
+
+  .suggestion-item--active, .suggestion-item {
+    width: 21rem;    
+    /*margin: 0 auto;*/
+    font-size: .77rem;
+    font-weight: 500;
+    padding: .66rem 1rem;     
+
+  }   
   
   @media only screen and (max-width: 560px) {
     .SearchBar {
