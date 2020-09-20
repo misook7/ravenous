@@ -5,7 +5,7 @@ const Yelp = {
   // retrieve search results from the Yelp API.
   search(term, location, sortBy) {
     return fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
+      `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}&limit=50`,
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,

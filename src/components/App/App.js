@@ -1,21 +1,21 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
-
 import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
-
 import Yelp from '../../util/Yelp';
+import JwPagination from 'jw-react-pagination';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state =  {
-      businesses: []
+      businesses: [],
+      businessesPerPage: []
     };
 
     this.searchYelp = this.searchYelp.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
   }
 
   searchYelp(term, location, sortBy) {
@@ -25,12 +25,17 @@ class App extends React.Component {
     });
   }
 
+  onChangePage(businessesPerPage) {
+    this.setState({businessesPerPage: businessesPerPage});
+  }
+
   render() {
     return (
       <div className="App">
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp} />
-        <BusinessList businesses={this.state.businesses} />
+        <BusinessList businesses={this.state.businessesPerPage} />
+        <JwPagination items={this.state.businesses} onChangePage={this.onChangePage} />
       </div>
     );
   }
