@@ -1,9 +1,9 @@
-import React from 'react';
-import './App.css';
-import BusinessList from '../BusinessList/BusinessList';
-import SearchBar from '../SearchBar/SearchBar';
-import Yelp from '../../util/Yelp';
-import JwPagination from 'jw-react-pagination';
+import React from "react";
+import "./App.css";
+import BusinessList from "../BusinessList/BusinessList";
+import SearchBar from "../SearchBar/SearchBar";
+import Yelp from "../../util/Yelp";
+import JwPagination from "jw-react-pagination";
 
 const itemsPerPage = 12;
 
@@ -11,9 +11,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state =  {
+    this.state = {
       businesses: [],
-      businessesPerPage: []
+      businessesPerPage: [],
     };
 
     this.searchYelp = this.searchYelp.bind(this);
@@ -22,13 +22,13 @@ class App extends React.Component {
 
   searchYelp(term, location, sortBy) {
     //console.log(`You are searching for ${term},  ${location}, and ${sortBy}`);
-    Yelp.search(term, location, sortBy).then (businesses => {
-      this.setState({businesses: businesses});
+    Yelp.search(term, location, sortBy).then((businesses) => {
+      this.setState({ businesses: businesses });
     });
   }
 
   onChangePage(businessesPerPage) {
-    this.setState({businessesPerPage: businessesPerPage});
+    this.setState({ businessesPerPage: businessesPerPage });
   }
 
   render() {
@@ -37,7 +37,13 @@ class App extends React.Component {
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp} />
         <BusinessList businesses={this.state.businessesPerPage} />
-        <JwPagination items={this.state.businesses} onChangePage={this.onChangePage} pageSize={itemsPerPage} />
+        <div className="pages">
+          <JwPagination
+            items={this.state.businesses}
+            onChangePage={this.onChangePage}
+            pageSize={itemsPerPage}
+          />
+        </div>
       </div>
     );
   }
