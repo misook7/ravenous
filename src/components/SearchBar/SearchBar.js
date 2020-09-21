@@ -1,6 +1,6 @@
 import React from "react";
 import "./SearchBar.css";
-import LocationSearchInput from '../LocationSearchInput/LocationSearchInput';
+import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 
 const sortByOptions = {
   "Best Match": "best_match",
@@ -25,14 +25,14 @@ class SearchBar extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(event) {   
+  handleSearch(event) {
     // at least location is required
     if (this.state.location) {
       this.props.searchYelp(
         this.state.term,
         this.state.location,
         this.state.sortBy
-      );  
+      );
     }
     event.preventDefault();
   }
@@ -84,19 +84,20 @@ class SearchBar extends React.Component {
     this.setState({ location: event.target.value });
   }
   */
-  
+
   handleLocationChange(selectedLocation) {
     this.setState({ location: selectedLocation });
-  };
-  
+  }
 
   // Trigger search query with enter key
   keyPressed(event) {
-    var code = event.keyCode || event.which;   
+    var code = event.keyCode || event.which;
     console.log(code);
     // 13 is enter key. One of the fields like term or location has to be filled to search.
-    console.log("term: " + this.state.term  +  "location: " + this.state.location);
-    if ((code === 13) && (this.state.term || this.state.location)) {
+    console.log(
+      "term: " + this.state.term + "location: " + this.state.location
+    );
+    if (code === 13 && (this.state.term || this.state.location)) {
       console.log("enter pressed");
       this.handleSearch(event);
     }
@@ -117,10 +118,13 @@ class SearchBar extends React.Component {
           {/* 09/17/2020 MS - location autocomplete is implemented by using react-places-autocomplete library 
           <input placeholder="Where?" onChange={this.handleLocationChange} /> 
           */}
-          <LocationSearchInput onHandleLocationChange={this.handleLocationChange} location={this.state.location} />         
+          <LocationSearchInput
+            onHandleLocationChange={this.handleLocationChange}
+            location={this.state.location}
+          />
         </div>
         <div className="SearchBar-submit">
-          <a onClick={this.handleSearch} href="#" >
+          <a onClick={this.handleSearch} href="#">
             Let's Go
           </a>
         </div>
