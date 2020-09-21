@@ -5,6 +5,8 @@ import SearchBar from '../SearchBar/SearchBar';
 import Yelp from '../../util/Yelp';
 import JwPagination from 'jw-react-pagination';
 
+const itemsPerPage = 12;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class App extends React.Component {
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp} />
         <BusinessList businesses={this.state.businessesPerPage} />
-        <JwPagination items={this.state.businesses} onChangePage={this.onChangePage} />
+        <JwPagination items={this.state.businesses} onChangePage={this.onChangePage} pageSize={itemsPerPage} />
       </div>
     );
   }
