@@ -41,8 +41,7 @@
 .SearchBar-fields {
   display: flex;
   justify-content: center;
-  margin-bottom: 2.88rem;
-  /* The items are stretched by default. If autosearch div expands area, the other input also expands it's height. To avoid, this needed */
+  margin-bottom: 2.88rem; /* The items are stretched by default. If autosearch div expands area, the other input also expands it's height. To avoid, this needed */
   align-items: flex-start;
 }
 
@@ -61,7 +60,9 @@
 }
 
 .SearchBar-submit {
+  display: inline-block;
   text-align: center;
+  margin-top: 0.6rem;
 }
 
 .SearchBar-submit a {

@@ -122,11 +122,11 @@ class SearchBar extends React.Component {
             onHandleLocationChange={this.handleLocationChange}
             location={this.state.location}
           />
-        </div>
-        <div className="SearchBar-submit">
-          <a onClick={this.handleSearch} href="#">
-            Let's Go
-          </a>
+          <div className="SearchBar-submit">
+            <a onClick={this.handleSearch} href="#">
+              Let's Go
+            </a>
+          </div>
         </div>
       </div>
     );
