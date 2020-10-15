@@ -20,7 +20,7 @@
   width: 4.33rem;
   border-bottom: 1px solid #fff;
   /* padding: 0 2.58rem 0.33rem 2.58rem; */
-  padding: 0rem 6rem 0.33rem 2rem;
+  padding: 0rem 6rem 0.33rem 4rem;
   line-height: 1.13;
   text-align: center;
   font-weight: 600;
@@ -88,14 +88,30 @@
   padding: 0.66rem 1rem;
 }
 
-@media only screen and (max-width: 560px) {
+@media only screen and (min-width: 961px) and (max-width: 1180px) {
+  .SearchBar-fields input {
+    width: 16rem;
+  }
+}
+
+@media only screen and (min-width: 821px) and (max-width: 960px) {
+  .SearchBar-fields input {
+    width: 15rem;
+  }
+  .SearchBar-submit a {
+    padding: 0.68rem 1.3rem;
+  }
+}
+
+
+@media only screen and (max-width: 820px) {
   .SearchBar {
     background-image: url("./background_search_mobile.jpg");
   }
-
+  
   .SearchBar-sort-options ul {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 2rem; */
+    /* margin-right: 2rem; */
   }
 
   .SearchBar-fields {
@@ -106,5 +122,46 @@
   .SearchBar-fields input {
     margin-right: 0;
     margin-bottom: 0.86rem;
+  }
+}
+
+
+@media only screen and (max-width: 760px) {
+  .SearchBar-sort-options li {
+    padding: 0rem 5.2rem 0.33rem 3.2rem;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .SearchBar-sort-options li {
+    padding: 0rem 4.8rem 0.33rem 2.8rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .SearchBar-sort-options li {
+    padding: 0rem 4.2rem 0.33rem 2.2rem;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .SearchBar-sort-options li {
+    padding: 0rem 4.0rem 0.33rem 2.0rem;
+    font-size: 0.73rem;
+  }
+  .SearchBar-submit a {
+    padding: 0.68rem 1.3rem;
+  }
+
+}
+
+@media only screen and (max-width: 360px) {
+  .SearchBar-sort-options li {
+    padding: 0rem 3.8rem 0.33rem 1.8rem;
+    font-size: 0.69rem;
+  }  
+
+  .SearchBar-fields input {
+    width: 18rem;
   }
 }

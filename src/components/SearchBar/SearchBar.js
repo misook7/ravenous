@@ -92,11 +92,8 @@ class SearchBar extends React.Component {
   // Trigger search query with enter key
   keyPressed(event) {
     var code = event.keyCode || event.which;
-    console.log(code);
-    // 13 is enter key. One of the fields like term or location has to be filled to search.
-    console.log(
-      "term: " + this.state.term + "location: " + this.state.location
-    );
+   
+    // 13 is enter key. One of the fields like term or location has to be filled to search.  
     if (code === 13 && (this.state.term || this.state.location)) {
       console.log("enter pressed");
       this.handleSearch(event);
